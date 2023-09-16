@@ -7,8 +7,9 @@ $(document).keypress(function () {
 
     if (gameStarted === false) {
         gameStarted = true;
+        startGame();
     }
-})
+});
 
 function startGame() {
     $("h2").text(numCircles);
@@ -16,17 +17,20 @@ function startGame() {
 }
 
 function newCircle() {
-    let randomLocation = [Math.floor(Math.random() * (windowDimension - 50)), Math.floor(Math.random() * (windowDimension - 50))];
+    let randomLocation = [
+        Math.floor(Math.random() * (windowDimension - 50)),
+        Math.floor(Math.random() * (windowDimension - 50)),
+    ];
     console.log(randomLocation);
-    let $circle = $("<div></div>").addClass("circle").css({ "top": randomLocation[0] + "px", "left": randomLocation[1] + "px" });
+    let $circle = $("<div></div>")
+        .addClass("circle")
+        .css({ top: randomLocation[0] + "px", left: randomLocation[1] + "px" });
 
     $(".window").append($circle);
     console.log("Created new circle");
 
     listenCircleClick();
 }
-
-startGame();
 
 function listenCircleClick() {
     $(".circle").click(function () {
@@ -36,10 +40,15 @@ function listenCircleClick() {
 
         if (numCircles === 0) {
             endGame();
-        }
-        else {
+        } else {
             newCircle();
             console.log($(".circle"));
         }
-    })
+    });
+}
+
+function endGame() {
+    $("h2").text("You did it! Press any key to restart");
+    numCircles = 10;
+    gameStarted = false;
 }
