@@ -1,7 +1,14 @@
+body {
+    background-color: #352f44;
+}
+
+header {
+    background-color: #2a2438;
+}
+
 .window {
-    background-color: white;
+    background-color: #5c5470;
     aspect-ratio: 1 / 1;
-    order: -1;
     position: relative;
 }
 
